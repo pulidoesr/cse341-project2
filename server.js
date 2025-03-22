@@ -49,8 +49,8 @@ initDb()
     console.log('Database connected successfully');
 
     app.listen(port, () => {
-      console.log(`Server is running on https://cse341-project1-d10a.onrender.com/:${port}`);
-      console.log(`Swagger Docs available at https://cse341-project1-d10a.onrender.com/:${port}/api-docs`)
+      console.log(`Server is running on https://cse341-project2-jj41.onrender.com/:${port}`);
+      console.log(`Swagger Docs available at https://cse341-project2-jj41.onrender.com/:${port}/api-docs`)
     });
   })
   .catch((err) => {
