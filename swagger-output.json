@@ -5,13 +5,14 @@
     "description": "Description",
     "version": "1.0.0"
   },
-  "host": "localhost:8080",
+  "host": "https://cse341-project2-jj41.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http"
+    "http",
+    "https"
   ],
   "paths": {
-    "/": {
+    "/users/": {
       "get": {
         "description": "",
         "produces": [
@@ -48,23 +49,23 @@
                   "example": "any"
                 },
                 "address": {
-                    "type": "object",
-                    "properties": {
-                      "street": { "type": "string", "example": "123 Main St" },
-                      "city": { "type": "string", "example": "New York" },
-                      "state": { "type": "string", "example": "NY" },
-                      "postalCode": { "type": "string", "example": "10001" },
-                      "country": { "type": "string", "example": "USA" }
-                    },
-                    "required": ["street", "city", "state", "postalCode", "country"]
-                  }
+                  "type": "object",
+                  "properties": {
+                    "street": { "type": "string", "example": "123 Main St" },
+                    "city": { "type": "string", "example": "New York" },
+                    "state": { "type": "string", "example": "NY" },
+                    "postalCode": { "type": "string", "example": "10001" },
+                    "country": { "type": "string", "example": "USA" }
+                  },
+                  "required": ["street", "city", "state", "postalCode", "country"]
+                }
               }
             }
           }
         ],
         "responses": {
           "201": {
-            "description": "Created"
+            "description": "User created"
           },
           "412": {
             "description": "Precondition Failed"
@@ -75,7 +76,7 @@
         }
       }
     },
-    "/{id}": {
+    "/users/{id}": {
       "get": {
         "description": "",
         "produces": [
@@ -125,16 +126,16 @@
                 "phone": {
                   "example": "any"
                 },
-              "address": {
-              "type": "object",
-              "properties": {
-                "street": { "type": "string", "example": "123 Main St" },
-                "city": { "type": "string", "example": "New York" },
-                "state": { "type": "string", "example": "NY" },
-                "postalCode": { "type": "string", "example": "10001" },
-                "country": { "type": "string", "example": "USA" }
+                "address": {
+                  "type": "object",
+                  "properties": {
+                    "street": { "type": "string", "example": "123 Main St" },
+                    "city": { "type": "string", "example": "New York" },
+                    "state": { "type": "string", "example": "NY" },
+                    "postalCode": { "type": "string", "example": "10001" },
+                    "country": { "type": "string", "example": "USA" }
                   },
-                    "required": ["street", "city", "state", "postalCode", "country"]
+                  "required": ["street", "city", "state", "postalCode", "country"]
                 }
               }
             }
@@ -142,7 +143,7 @@
         ],
         "responses": {
           "204": {
-            "description": "User updated successfully"
+            "description": "User updated"
           },
           "412": {
             "description": "Precondition Failed"
@@ -164,7 +165,183 @@
         ],
         "responses": {
           "204": {
-            "description": "User deleted successfully"
+            "description": "User deleted"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/cards/": {
+      "get": {
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "userId": {
+                  "example": "any"
+                },
+                "cardType": {
+                  "example": "any"
+                },
+                "cardBrand": {
+                  "example": "any"
+                },
+                "cardNumberMasked": {
+                  "example": "any"
+                },
+                "last4": {
+                  "example": "any"
+                },
+                "expiration": {
+                  "type": "object",
+                  "properties": {
+                    "month":{
+                      "type": "integer",
+                      "example": 12
+                    },
+                    "year": {
+                      "type": "integer",
+                      "example": 2026
+                    },
+                  "required": ["month", "year"]
+                  }
+                 }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Card created"
+          },
+          "412": {
+            "description": "Precondition Failed"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/cards/{id}": {
+      "get": {
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "userId": {
+                  "example": "any"
+                },
+                "cardType": {
+                  "example": "any"
+                },
+                "cardBrand": {
+                  "example": "any"
+                },
+                "cardNumberMasked": {
+                  "example": "any"
+                },
+                "last4": {
+                  "example": "any"
+                },
+                "expiration": {
+                  "type": "object",
+                  "properties": {
+                    "month":{
+                      "type": "integer",
+                      "example": 12
+                    },
+                    "year": {
+                      "type": "integer",
+                      "example": 2026
+                    },
+                  "required": ["month", "year"]
+                  }
+                 }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Card updated"
+          },
+          "412": {
+            "description": "Precondition Failed"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Card deleted"
           },
           "400": {
             "description": "Bad Request"

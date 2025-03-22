@@ -11,7 +11,7 @@ const options = {
     },
     servers: [
       {
-        url: "https://cse341-project1-d10a.onrender.com", // Change to your server URL
+        url: "//https://cse341-project2-jj41.onrender.com/", // Change to your server URL
       },
     ],
   },

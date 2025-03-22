@@ -10,9 +10,8 @@ users.getAll = async (req, res) => {
       const users = await db.collection('users').find().toArray();
       res.setHeader('Content-Type', 'application/json');
       res.status(200).json(users);
-      res.status(200).send();
   } catch (error) {
-      console.error("Error fetching contacts:", error);
+      console.error("Error fetching users:", error);
       res.status(500).json({ message: "Internal Server Error" });
   };
 };

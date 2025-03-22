@@ -5,6 +5,7 @@ const path = require('path');
 const cors = require('cors');
 const { initDb } = require('./models/connect'); 
 const usersRoute = require('./routes/usersRoute');
+const creditcardRoute = require('./routes/creditcardRoute')
 const { swaggerUi, swaggerSpec } = require("./swaggerConfig");
 const swaggerDocument = require('./swagger-output.json');
 const bodyParser = require('body-parser');
@@ -32,8 +33,8 @@ app.use((req, res, next) => {
   next();
   });
 
-
-app.use('/', usersRoute); 
+app.use('/users', usersRoute);
+app.use('/cards', creditcardRoute);
 
 const port = 8080;
 
