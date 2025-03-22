@@ -14,7 +14,7 @@ const initDb = async () => {
     }
     try {
         await client.connect();
-        _db = client.db("contacts"); 
+        _db = client.db("project2"); 
         console.log("Connected to MongoDB");
         return _db;
     } catch (err) {

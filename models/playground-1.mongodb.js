@@ -4,7 +4,7 @@
 
 const database = 'project2';
 const collection1 = 'creditcard';
-const collection2 = 'transactions';
+const collection2 = 'users';
 
 // Create a new database.
 use(database);

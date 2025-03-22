@@ -4,7 +4,7 @@ const app = express();
 const path = require('path');
 const cors = require('cors');
 const { initDb } = require('./models/connect'); 
-const contactsRoute = require('./routes/contactsRoute');
+const usersRoute = require('./routes/usersRoute');
 const { swaggerUi, swaggerSpec } = require("./swaggerConfig");
 const swaggerDocument = require('./swagger-output.json');
 const bodyParser = require('body-parser');
@@ -15,7 +15,7 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 
 // Middleware to serve frontend static files
-app.use(express.static(path.join(__dirname, './cse341-project1')));
+app.use(express.static(path.join(__dirname, './cse341-project2')));
 app.use(express.json());
 
 // Use routes
@@ -33,7 +33,7 @@ app.use((req, res, next) => {
   });
 
 
-app.use('/', contactsRoute); 
+app.use('/', usersRoute); 
 
 const port = 8080;
 
