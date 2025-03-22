@@ -35,6 +35,7 @@ app.use((req, res, next) => {
 
 app.use('/users', usersRoute);
 app.use('/cards', creditcardRoute);
+app.use('/', usersRoute)
 
 const port = 8080;
 
